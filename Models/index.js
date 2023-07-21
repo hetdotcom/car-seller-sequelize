@@ -45,10 +45,13 @@ db.car_seller = require('./car_sellerModel')(sequelize, DataTypes)
 db.user_car = require('./user_carModel')(sequelize, DataTypes)
 
 // ----------------------------- One to Many ----------------------------------------
-db.brand.hasMany(db.car, {
-  foreignKey: 'iBrandId',
-  onDelete: 'set null',
-})
+db.seller.hasMany(db.transaction, { foreignKey: 'iSellerId' })
+db.transaction.belongsTo(db.seller, { foreignKey: 'iSellerId' })
+
+db.car.hasMany(db.transaction, { foreignKey: 'iCarId' })
+db.transaction.belongsTo(db.car, { foreignKey: 'iCarId' })
+
+db.brand.hasMany(db.car, { foreignKey: 'iBrandId' })
 db.car.belongsTo(db.brand, { foreignKey: 'iBrandId' })
 
 // ---------------------------- Many to Many ----------------------------------------

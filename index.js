@@ -57,12 +57,6 @@ app.get('/ping', (_, res) => {
 })
 
 // --------------------------- User routes -----------------------------------------
-// app.use('/user', require('./routes/userRoutes'))
-// app.use('/post', require('./routes/postRoutes'))
-// app.use('/tag', require('./routes/tagRoutes'))
-// app.use('/post_tag', require('./routes/post_tagRoutes'))
-
-
 // app.use('/api/brands', require('./Routes/brandRoutes'))
 // app.use('/api/cars', require('./Routes/carRoutes'))
 app.use('/api/users', require('./Routes/userRoutes'))
