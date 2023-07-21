@@ -2,7 +2,6 @@
 
 const messages = require('../messages')
 const { db, sequelize } = require('../Models/index')
-const User = db.user
 const Brand = db.brand
 const Car = db.car
 const Seller = db.seller
@@ -75,57 +74,6 @@ const mostSoldCar = async (_, res) => {
 
 const mostSoldCarBrand = async (_, res) => {
   try {
-    // const oTopBrand = await Transaction.aggregate([
-    //   {
-    //     $lookup: {
-    //       from: 'cars',
-    //       localField: 'sCar',
-    //       foreignField: '_id',
-    //       as: 'aCarData',
-    //       pipeline: [
-    //         {
-    //           $project: {
-    //             oBrand: 1,
-    //             _id: 0,
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   },
-    //   {
-    //     $lookup: {
-    //       from: 'brands',
-    //       localField: 'aCarData.oBrand',
-    //       foreignField: '_id',
-    //       as: 'sModel',
-    //       pipeline: [
-    //         {
-    //           $project: {
-    //             sBrand: 1,
-    //             _id: 0,
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   },
-    //   {
-    //     $unwind: {
-    //       path: '$sModel',
-    //     },
-    //   },
-    //   {
-    //     $group: {
-    //       _id: '$sModel.sBrand',
-    //       car_count: {
-    //         $sum: 1,
-    //       },
-    //     },
-    //   },
-
-    //   { $sort: { car_count: -1 } },
-    //   { $limit: 1 },
-    // ])
-
     const oTopBrand = await Transaction.findOne({
       attributes: [
         [sequelize.fn('count', sequelize.col('iTransactionId')), 'Total'],
